@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
+from rest_framework.authtoken import views as rsf_auth_views
 from novelty import views
 
 
@@ -31,7 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # patterns
-    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'^api-token-auth/', rsf_auth_views.obtain_auth_token)
 ]
 
 urlpatterns += router.urls

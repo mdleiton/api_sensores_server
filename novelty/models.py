@@ -2,7 +2,7 @@ from django.db import models
 
 class Novelty(models.Model):
     date_time = models.DateTimeField()
-    image = models.ImageField('uploads/')
+    video = models.FileField('uploads/',null=True)
     node = models.ForeignKey(
             'Node',
             on_delete=models.PROTECT,
