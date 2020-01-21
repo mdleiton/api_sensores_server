@@ -13,17 +13,17 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['url', 'name']
 
-class NoveltySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Novelty
-        fields = '__all__'
-
-class NodeSerializer(serializers.HyperlinkedModelSerializer):
+class NodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node
         fields = '__all__'
 
-class LocationSerializer(serializers.HyperlinkedModelSerializer):
+class NoveltySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Novelty
+        fields = '__all__'
+
+class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = '__all__'
