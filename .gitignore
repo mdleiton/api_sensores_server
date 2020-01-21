@@ -119,4 +119,7 @@ dmypy.json
 ### venv ###
 # Virtualenv
 myvenv/
+env/
 
+#clion IDE
+.idea/
