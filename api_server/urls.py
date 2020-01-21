@@ -18,6 +18,9 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 from rest_framework.authtoken import views as rsf_auth_views
 from novelty import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
 
 
 router = routers.DefaultRouter()
@@ -33,7 +36,8 @@ urlpatterns = [
 
     # patterns
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path(r'^api-token-auth/', rsf_auth_views.obtain_auth_token)
+    re_path(r'^api-token-auth/', rsf_auth_views.obtain_auth_token),
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
 ]
 
 urlpatterns += router.urls
