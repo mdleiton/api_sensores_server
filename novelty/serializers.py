@@ -21,7 +21,7 @@ class NodeSerializer(serializers.ModelSerializer):
 class NoveltySerializer(serializers.ModelSerializer):
     class Meta:
         model = Novelty
-        fields = '__all__'
+        fields = ["id", 'date_time', 'video', "node", "region"]
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:

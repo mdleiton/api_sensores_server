@@ -1,9 +1,13 @@
 from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
+from .models import *
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from .serializers import *
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -31,3 +35,14 @@ class LocationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+
+class Notificaciones(APIView):
+    permission_classes = ()
+
+    def get(self, request, format=None):
+        nuevas = Novelty.objects.filter(send=False)
+        enviar = Novelty.objects.filter(send=False)
+        serializer = NoveltySerializer(enviar, many=True).data
+        nuevas.update(send=True)
+        return Response(serializer, status=status.HTTP_200_OK)
+        
